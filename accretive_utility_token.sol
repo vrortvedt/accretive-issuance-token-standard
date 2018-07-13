@@ -14,8 +14,17 @@ contract AccretiveUtilityToken {
     
     struct Participant {
         bool eligible;
-        string submission;
+        bytes32 submission;
         uint8[] evals;
+    }
+    
+    struct Event {
+        string eventName;
+        uint eventId;
+        uint64 eventStartTime;
+        uint32 eventDuration;
+        uint16 numEnrolled;
+        uint16 numEligible;
     }
     
     mapping (address => Participant) public participantInfo;
@@ -45,7 +54,11 @@ contract AccretiveUtilityToken {
         balanceOf[_tokenCreator] = 0;
     }
 
-    function createAwardEvent(uint256 _participants) public isOwner {
+    function createAwardEvent(uint32 _eventId, timestamp _eventStartTime, _uint32 eventDuration) public isOwner {
+        _eventId = eventId;
+        _eventStartTime = _eventStartTime;
+        _eventDuration * seconds = eventDuration;
+        
         _participants = participants.length;
     }
     
