@@ -24,7 +24,12 @@ contract AccretiveUtilityToken {
 
     address owner = 0x0;
 
-    modifier isOwner {
+    modifier isDev {
+        assert(owner == msg.sender);
+        _;
+    }
+    
+     modifier isParticipant {
         assert(owner == msg.sender);
         _;
     }
@@ -45,11 +50,11 @@ contract AccretiveUtilityToken {
         balanceOf[_tokenCreator] = 0;
     }
 
-    function createAwardEvent(uint256 _participants) public isOwner {
+    function createAwardEvent(uint256 _participants) public isDev {
         _participants = participants.length;
     }
     
-    function participate(string _submission, uint8 _eval) public {
+    function participate(string _submission, uint8 _eval) public isParticipant {
         participantInfo[msg.sender].eligible = false;
         bytes memory emptySubmissionTest = bytes(_submission);
         require(emptySubmissionTest.length > 0 && _eval > 0);
@@ -58,7 +63,7 @@ contract AccretiveUtilityToken {
         participantInfo[msg.sender].eligible = true;
     }
     
-    function mintAndDistributeAUT(address _awardee, address _tokenCreator, uint256 _value) public payable isOwner {
+    function mintAndDistributeAUT(address _awardee, address _tokenCreator, uint256 _value) public payable isDev {
         participants.length = _value;
         totalSupply = totalSupply + _value;
         balanceOf[_awardee] += _value / 8 * 7;
@@ -92,15 +97,15 @@ contract AccretiveUtilityToken {
         return true;
     }
 
-    function stop() public isOwner {
+    function stop() public isDev {
         stopped = true;
     }
 
-    function start() public isOwner {
+    function start() public isDev {
         stopped = false;
     }
 
-    function setName(bytes32 _name) public isOwner {
+    function setName(bytes32 _name) public isDev {
         name = _name;
     }
 
