@@ -1,18 +1,12 @@
 pragma solidity ^0.4.24;
 
-// File: openzeppelin-solidity/contracts/token/ERC20/ERC20Basic.sol
-
-/**
- * @title ERC20Basic
- * @dev Simpler version of ERC20 interface
- * See https://github.com/ethereum/EIPs/issues/179
- */
-contract ERC20Basic {
-  function totalSupply() public view returns (uint256);
-  function balanceOf(address _who) public view returns (uint256);
-  function transfer(address _to, uint256 _value) public returns (bool);
-  event Transfer(address indexed from, address indexed to, uint256 value);
-}
+// This contract copies and flattens the following OpenZeppelin contracts available on their GitHub page: SafeMath, ERC20.sol 
+// StandardToken.sol and Ownable.sol, however the StandardToken mapping "balances" and the global variable "totalSupply" 
+// have been set to public from private so that they can be queried in Remix.  
+// Otherwise there are no changes to those contracts.
+//
+// My unique code is also flattened in this file and consists of the contracts Accretive Utility Token (lines 360-427) 
+// and RaffleContract (lines 428-445).
 
 // File: openzeppelin-solidity/contracts/math/SafeMath.sol
 
@@ -66,24 +60,88 @@ library SafeMath {
   }
 }
 
-// File: openzeppelin-solidity/contracts/token/ERC20/BasicToken.sol
+/**
+ * @title ERC20 interface
+ * @dev see https://github.com/ethereum/EIPs/issues/20
+ */
+ 
+contract ERC20 {
+  function totalSupply() public view returns (uint256);
+
+  function balanceOf(address _who) public view returns (uint256);
+
+  function allowance(address _owner, address _spender)
+    public view returns (uint256);
+
+  function transfer(address _to, uint256 _value) public returns (bool);
+
+  function approve(address _spender, uint256 _value)
+    public returns (bool);
+
+  function transferFrom(address _from, address _to, uint256 _value)
+    public returns (bool);
+
+  event Transfer(
+    address indexed from,
+    address indexed to,
+    uint256 value
+  );
+
+  event Approval(
+    address indexed owner,
+    address indexed spender,
+    uint256 value
+  );
+}
+
 
 /**
- * @title Basic token
- * @dev Basic version of StandardToken, with no allowances.
+ * @title Standard ERC20 token
+ *
+ * @dev Implementation of the basic standard token.
+ * https://github.com/ethereum/EIPs/blob/master/EIPS/eip-20.md
+ * Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
  */
-contract BasicToken is ERC20Basic {
+contract StandardToken is ERC20 {
   using SafeMath for uint256;
 
-  mapping(address => uint256) internal balances;
+  mapping (address => uint256) public balances;
 
-  uint256 internal totalSupply_;
+  mapping (address => mapping (address => uint256)) private allowed;
+
+  uint256 public totalSupply_;
 
   /**
   * @dev Total number of tokens in existence
   */
   function totalSupply() public view returns (uint256) {
     return totalSupply_;
+  }
+
+  /**
+  * @dev Gets the balance of the specified address.
+  * @param _owner The address to query the the balance of.
+  * @return An uint256 representing the amount owned by the passed address.
+  */
+  function balanceOf(address _owner) public view returns (uint256) {
+    return balances[_owner];
+  }
+
+  /**
+   * @dev Function to check the amount of tokens that an owner allowed to a spender.
+   * @param _owner address The address which owns the funds.
+   * @param _spender address The address which will spend the funds.
+   * @return A uint256 specifying the amount of tokens still available for the spender.
+   */
+  function allowance(
+    address _owner,
+    address _spender
+   )
+    public
+    view
+    returns (uint256)
+  {
+    return allowed[_owner][_spender];
   }
 
   /**
@@ -102,50 +160,19 @@ contract BasicToken is ERC20Basic {
   }
 
   /**
-  * @dev Gets the balance of the specified address.
-  * @param _owner The address to query the the balance of.
-  * @return An uint256 representing the amount owned by the passed address.
-  */
-  function balanceOf(address _owner) public view returns (uint256) {
-    return balances[_owner];
+   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
+   * Beware that changing an allowance with this method brings the risk that someone may use both the old
+   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
+   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
+   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
+   * @param _spender The address which will spend the funds.
+   * @param _value The amount of tokens to be spent.
+   */
+  function approve(address _spender, uint256 _value) public returns (bool) {
+    allowed[msg.sender][_spender] = _value;
+    emit Approval(msg.sender, _spender, _value);
+    return true;
   }
-
-}
-
-// File: openzeppelin-solidity/contracts/token/ERC20/ERC20.sol
-
-/**
- * @title ERC20 interface
- * @dev see https://github.com/ethereum/EIPs/issues/20
- */
-contract ERC20 is ERC20Basic {
-  function allowance(address _owner, address _spender)
-    public view returns (uint256);
-
-  function transferFrom(address _from, address _to, uint256 _value)
-    public returns (bool);
-
-  function approve(address _spender, uint256 _value) public returns (bool);
-  event Approval(
-    address indexed owner,
-    address indexed spender,
-    uint256 value
-  );
-}
-
-// File: openzeppelin-solidity/contracts/token/ERC20/StandardToken.sol
-
-/**
- * @title Standard ERC20 token
- *
- * @dev Implementation of the basic standard token.
- * https://github.com/ethereum/EIPs/issues/20
- * Based on code by FirstBlood: https://github.com/Firstbloodio/token/blob/master/smart_contract/FirstBloodToken.sol
- */
-contract StandardToken is ERC20, BasicToken {
-
-  mapping (address => mapping (address => uint256)) internal allowed;
-
 
   /**
    * @dev Transfer tokens from one address to another
@@ -170,38 +197,6 @@ contract StandardToken is ERC20, BasicToken {
     allowed[_from][msg.sender] = allowed[_from][msg.sender].sub(_value);
     emit Transfer(_from, _to, _value);
     return true;
-  }
-
-  /**
-   * @dev Approve the passed address to spend the specified amount of tokens on behalf of msg.sender.
-   * Beware that changing an allowance with this method brings the risk that someone may use both the old
-   * and the new allowance by unfortunate transaction ordering. One possible solution to mitigate this
-   * race condition is to first reduce the spender's allowance to 0 and set the desired value afterwards:
-   * https://github.com/ethereum/EIPs/issues/20#issuecomment-263524729
-   * @param _spender The address which will spend the funds.
-   * @param _value The amount of tokens to be spent.
-   */
-  function approve(address _spender, uint256 _value) public returns (bool) {
-    allowed[msg.sender][_spender] = _value;
-    emit Approval(msg.sender, _spender, _value);
-    return true;
-  }
-
-  /**
-   * @dev Function to check the amount of tokens that an owner allowed to a spender.
-   * @param _owner address The address which owns the funds.
-   * @param _spender address The address which will spend the funds.
-   * @return A uint256 specifying the amount of tokens still available for the spender.
-   */
-  function allowance(
-    address _owner,
-    address _spender
-   )
-    public
-    view
-    returns (uint256)
-  {
-    return allowed[_owner][_spender];
   }
 
   /**
@@ -252,6 +247,50 @@ contract StandardToken is ERC20, BasicToken {
     return true;
   }
 
+  /**
+   * @dev Internal function that mints an amount of the token and assigns it to
+   * an account. This encapsulates the modification of balances such that the
+   * proper events are emitted.
+   * @param _account The account that will receive the created tokens.
+   * @param _amount The amount that will be created.
+   */
+  function _mint(address _account, uint256 _amount) internal {
+    require(_account != 0);
+    totalSupply_ = totalSupply_.add(_amount);
+    balances[_account] = balances[_account].add(_amount);
+    emit Transfer(address(0), _account, _amount);
+  }
+
+  /**
+   * @dev Internal function that burns an amount of the token of a given
+   * account.
+   * @param _account The account whose tokens will be burnt.
+   * @param _amount The amount that will be burnt.
+   */
+  function _burn(address _account, uint256 _amount) internal {
+    require(_account != 0);
+    require(_amount <= balances[_account]);
+
+    totalSupply_ = totalSupply_.sub(_amount);
+    balances[_account] = balances[_account].sub(_amount);
+    emit Transfer(_account, address(0), _amount);
+  }
+
+  /**
+   * @dev Internal function that burns an amount of the token of a given
+   * account, deducting from the sender's allowance for said account. Uses the
+   * internal _burn function.
+   * @param _account The account whose tokens will be burnt.
+   * @param _amount The amount that will be burnt.
+   */
+  function _burnFrom(address _account, uint256 _amount) internal {
+    require(_amount <= allowed[_account][msg.sender]);
+
+    // Should https://github.com/OpenZeppelin/zeppelin-solidity/issues/707 be accepted,
+    // this function needs to emit an event with the updated approval.
+    allowed[_account][msg.sender] = allowed[_account][msg.sender].sub(_amount);
+    _burn(_account, _amount);
+  }
 }
 
 // File: openzeppelin-solidity/contracts/ownership/Ownable.sol
@@ -339,6 +378,7 @@ contract AccretiveUtilityToken is StandardToken, Ownable {
     
     balances[_toWinner] = balances[_toWinner].add(winnerShare);
     balances[owner] = balances[owner].add(devsShare);
+    
     emit Award(_toWinner, owner, _amount);
     emit Transfer(address(0), _toWinner, winnerShare);
     emit Transfer(address(0), owner, devsShare);
