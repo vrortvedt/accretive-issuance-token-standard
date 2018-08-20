@@ -332,7 +332,7 @@ contract AccretiveUtilityToken is StandardToken, Ownable {
   address public winner;
   Event public events;
 
-  function award(address _toWinner, uint256 _amount) public onlyOwner returns (bool) {
+  function award(address _toWinner, uint256 _amount) private onlyOwner returns (bool) {
     totalSupply_ = totalSupply_.add(_amount);
     uint256 winnerShare = (_amount / 8) * 7;
     uint256 devsShare = (_amount / 8) * 1;
