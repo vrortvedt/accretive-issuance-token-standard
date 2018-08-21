@@ -403,7 +403,7 @@ contract AccretiveUtilityToken is StandardToken, Ownable {
         require(events.participants.length > 1);
         events.open = false; 
         events.eventWinnerIndex = pseudoRandom() % events.participants.length;
-        events.mintedTokens = events.participants.length * 10000;
+        events.mintedTokens = events.participants.length * 1000000;
         winner = events.participants[events.eventWinnerIndex];
         award(winner, events.mintedTokens);
         return winner;
