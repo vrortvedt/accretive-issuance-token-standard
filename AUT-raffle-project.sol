@@ -6,7 +6,7 @@ pragma solidity ^0.4.24;
 // Otherwise there are no changes to those contracts.
 //
 // My unique code is also flattened in this file and consists of the contracts Accretive Utility Token (lines 360-428) 
-// and RaffleContract (lines 429-447).
+// and RaffleContract (lines 429-451).
 
 // File: openzeppelin-solidity/contracts/math/SafeMath.sol
 
@@ -416,6 +416,10 @@ contract AccretiveUtilityToken is StandardToken, Ownable {
 
     function getParticipants() public view returns (address[]) {
         return events.participants;
+    }
+    
+    function eventStatus() public view returns (bool) {
+        return events.open;
     }
     
     function canEnter() public view returns (bool) {
