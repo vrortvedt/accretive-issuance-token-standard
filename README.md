@@ -7,7 +7,7 @@ Ethereum utility token issuance model where supply is incremented as the token i
 The project provides for the accretive minting and issuance of fungible utility tokens utilized by a dApp according to the dApp’s award system.  Instead of tokens being pre-mined (minting all token supply at the moment the token is created) or issued on a time-based automated schedule regardless of token demand or use (as in PoW or PoS block rewards), an accretive utility token issuance model accurately reflects the dApp’s utility while providing users a method to acquire tokens without regard to their economic power.  It also proposes a compensation framework (see The Developer’s Bit section) that is intended to equitably and transparently reward developers in direct proportion to the utility of their dApp.
 
 ## **Design Mechanisms**
-The mechanics for accretive token issuance built on the ERC20 fungible token standard A [link](http://example.com "Title").[link] (https://theethereum.wiki/w/index.php/ERC20_Token_Standard "Title") and are straightforward:  
+The mechanics for accretive token issuance built on the [ERC20 fungible token standard](https://theethereum.wiki/w/index.php/ERC20_Token_Standard "Title") and are straightforward:  
 1. Create a dApp-specific token and set its total supply to 0.
 1. Conduct an award event within the dApp and mint the number of tokens to be awarded for the event, with the default setting being one token per legitimate event participant
 1. Transfer 7/8ths of the newly-minted tokens to the award recipient and 1/8th to the dApp developers
