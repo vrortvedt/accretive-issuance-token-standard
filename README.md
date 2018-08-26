@@ -54,7 +54,7 @@ Uses weather prediction competition dApp to earn reputation as judicious and pre
 
 ## **Library packages**
 This contract uses the following OpenZeppelin libraries:
-* math/SafeMath.sol
+* [math/SafeMath.sol] (https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/math/SafeMath.sol"Title")
 * ownership/Ownable.sol
 * lifecycle/Pausable.sol
 * token/ERC20/ERC20.sol
