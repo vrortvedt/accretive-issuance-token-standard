@@ -6,6 +6,20 @@ Ethereum utility token issuance model where supply is incremented as the token i
 ## **Overview**
 The project provides for the accretive minting and issuance of fungible utility tokens utilized by a dApp according to the dApp’s award system.  Instead of tokens being pre-mined (minting all token supply at the moment the token is created) or issued on a time-based automated schedule regardless of token demand or use (as in PoW or PoS block rewards), an accretive utility token issuance model accurately reflects the dApp’s utility while providing users a method to acquire tokens without regard to their economic power.  It also proposes a compensation framework (see The Developer’s Bit section) that is intended to equitably and transparently reward developers in direct proportion to the utility of their dApp.
 
+## **How To Set Up**
+### Prerequisites:
+* Node
+* NPM
+* Truffle
+* Ganache-cli
+
+### Steps:
+1. from the terminal, create a new directory for this project - eg mkdir AUTRaffle
+2. from inside that directory, run 
+----
+truffle init
+----
+
 ## **Design Mechanisms**
 The mechanics for accretive token issuance built on the [ERC20 fungible token standard](https://theethereum.wiki/w/index.php/ERC20_Token_Standard "Title") and are straightforward:  
 1. Create a dApp-specific token and set its total supply to 0.
