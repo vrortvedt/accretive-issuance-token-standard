@@ -1,0 +1,18 @@
+# Rinkeby contract deployment of AUTRaffle.sol address: 0xcf1f697736ec8f723fb526e0c3aa4b654c1a6443
+
+https://rinkeby.etherscan.io/address/0xcf1f697736ec8f723fb526e0c3aa4b654c1a6443
+
+Interact with the contract at https://remix.ethereum.org/ by clicking on the "Run" tab in the top right, 
+then under the "Deploy" button, copy the deployed address above into the box and click the "At Address" button.
+
+The deployed instance will appear under "Deployed Contracts".  Click the arrow to see how to interact with it.
+
+You will need Rinkeby test ether to pay the gas costs of interacting with the contract.  You can get free Rinkeby ether 
+from https://faucet.rinkeby.io/.
+
+Transactions are the pick buttons - after clicking one, you might need to click the Metamask extension
+to bring up the transaction window.
+
+Only the owner of the contract can open raffles and pick winners but if a raffle is open, 
+anyone other than the owner can enter it.  Feel free to enter - I will plan to leave it open for several days beginning
+8/28/18 before picking a winner.
