@@ -12,10 +12,21 @@ The project provides for the accretive minting and issuance of fungible utility 
 * NPM
 * Truffle
 * Ganache-cli
+* web3
 
 ### Steps:
 1. from the terminal, create a new directory for this project - eg `mkdir AUTRaffle`
 2. from inside that directory, run `truffle init`
+3. in the contracts folder, create a new file titled "AUTRaffle.sol" and copy the solidity code from this repository
+4. in the test folder, create a new file titled "AUTRaffleTest.js" and copy the js code from this repository
+5. install the OpenZeppelin libraries via `npm install -E openzeppelin-solidity`
+6. run `ganache-cli`
+7. in a new terminal tab in the same directory, run `truffle compile`
+8. run `truffle migrate`
+9. run `truffle test`
+10. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
+11. using the javascript VM environment, Deploy a copy of AUTRaffle
+12. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions
 
 
 ## **Design Mechanisms**
