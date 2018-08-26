@@ -1,4 +1,4 @@
-# **Rinkeby contract deployment of AUTRaffle.sol address: 0xcf1f697736ec8f723fb526e0c3aa4b654c1a6443**
+Rinkeby contract deployment of AUTRaffle.sol address: 0xcf1f697736ec8f723fb526e0c3aa4b654c1a6443
 
 https://rinkeby.etherscan.io/address/0xcf1f697736ec8f723fb526e0c3aa4b654c1a6443
 
