@@ -18,6 +18,7 @@ The project provides for the accretive minting and issuance of fungible utility 
 1. from the terminal, create a new directory for this project - eg `mkdir AUTRaffle`
 2. from inside that directory, run `truffle init`
 3. in the contracts folder, create a new file titled "AUTRaffle.sol" and copy the solidity code from this repository
+4. in the migrations folder, create a new file titled "2_deploy_contracts.js" and the js code from this repository
 4. in the test folder, create a new file titled "AUTRaffleTest.js" and copy the js code from this repository
 5. install the OpenZeppelin libraries via `npm install -E openzeppelin-solidity`
 6. run `ganache-cli`
