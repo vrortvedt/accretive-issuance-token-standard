@@ -30,6 +30,19 @@ Developers of utility dApps may choose to use an AUT issuance model that provide
 The goal is to create a compensation standard that is baked into the issuance mechanism and that satisfies the community's sense of fairness while appropriately incentivizing (that is, neither under- nor over-incentivizing) developers to create the most useful dApps.
 
 ## **User Stories**
+* A raffle organizer deploys the contract, becomes its owner via the constructor and sends a transaction via
+the openEvent function to open a new raffle.
+* Upon deployment, ERC20-compliant RaffleTokens (RFT) are instantiated with a totalSupply of 0
+* Participants enter the raffle by sending a transaction via the "enter" function
+* Once there are at least two entrants in the raffle, the owner can call "pickWinner" which pseudorandomly chooses a winner
+of the raffle, closes the raffle to new entrants and clears the array of current entrants.
+* At the moment that a winner is picked, 1 RFT is minted for each entrant, so a minimum of 2 RFT tokens per raffle.
+* Also at that moment, the winner is transferred 7/8ths of the minted RFT, and the owner who deployed the contract is 
+transferred 1/8th of the minted RFT
+* Token balances are stored on the blockchain, and the owner may open a new raffle from the same deployed contract by repeating the first step.  
+
+
+## **Potential Applications - User Stories**
 * Helga, 30 - social game enthusiast
 Uses social trust game dApp to play blockchain version of Mafia (aka Werewolf), with members of surviving faction splitting the newly issued tokens.
 * Gunnar, 49 - digital artist 
@@ -37,12 +50,14 @@ Uses dApp to enter competition with other digital artists to create and evaluate
 * Joe, 15 - pun enthusiast
 Uses dApp to enter timed wordplay contests, with competitors having limited time to submit their best linguistic joke based on some randomized input like a news headline or an unusual photograph.
 * Carly, 40 - amateur meteorologist
-Uses weather prediction competition dApp to earn reputation as judicious and precise weather forecaster.  A heavily utilized weather forecasting dApp could serve to improve accuracy and availability of weather forecasts.  
-
+Uses weather prediction competition dApp to earn reputation as judicious and precise weather forecaster.  She would submit predictions for the high and low temperatures, as well as teh amount of rain one week from now.  A heavily utilized weather forecasting dApp could serve to improve accuracy and availability of weather forecasts.  
 
 ## **Library packages**
-
-## **uPort Integration**
+This contract uses the following OpenZeppelin libraries:
+* math/SafeMath.sol
+* ownership/Ownable.sol
+* lifecycle/Pausable.sol
+* token/ERC20/ERC20.sol
 
 
  
