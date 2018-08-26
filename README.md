@@ -14,11 +14,9 @@ The project provides for the accretive minting and issuance of fungible utility 
 * Ganache-cli
 
 ### Steps:
-1. from the terminal, create a new directory for this project - eg mkdir AUTRaffle
-2. from inside that directory, run 
-----
-truffle init
-----
+1. from the terminal, create a new directory for this project - eg `mkdir AUTRaffle`
+2. from inside that directory, run `truffle init`
+
 
 ## **Design Mechanisms**
 The mechanics for accretive token issuance built on the [ERC20 fungible token standard](https://theethereum.wiki/w/index.php/ERC20_Token_Standard "Title") and are straightforward:  
