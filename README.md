@@ -39,11 +39,11 @@ The project provides for the accretive minting and issuance of fungible utility 
 11. using the javascript VM environment, Deploy a copy of AUTRaffle
 12. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions
 ##### INTERACTION OPTION C: Deployed Rinkeby Instance Option
-1. obtain rinkeby testnet ether from a metamask address - you can get some [here](https://faucet.rinkeby.io "Title")
-2. at the [Remix](https://remix.ethereum.org "Title") browser, switch to the injected web3 environment
-3. under the "Run" tab, copy the following into the form and click the "At Address" blue button 
+11. obtain rinkeby testnet ether from a metamask address - you can get some [here](https://faucet.rinkeby.io "Title")
+12. at the [Remix](https://remix.ethereum.org "Title") browser, switch to the injected web3 environment
+13. under the "Run" tab, copy the following into the form and click the "At Address" blue button 
 `0xCF1F697736eC8F723Fb526e0c3AA4B654C1A6443` - this is an instance of the contract that has been deployed to the Rinkeby testnet
-4. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions - feel free to send me an email at victorrortvedt@gmail.com if you'd like me to open a raffle or pick a winner
+14. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions - feel free to send me an email at victorrortvedt@gmail.com if you'd like me to open a raffle or pick a winner
 #### To deploy your own instance of the contract
 1. install the solc compiler `npm install -g solc`
 1. install truffle-hdwallet-provider `npm install truffle-hdwallet-provider`
