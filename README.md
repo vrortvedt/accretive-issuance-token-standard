@@ -15,6 +15,7 @@ The project provides for the accretive minting and issuance of fungible utility 
 * web3
 * Metamask
 * dotenv
+* truffle-hdwallet-provider
 
 ### Steps:
 1. from the terminal, create a new directory for this project - eg `mkdir AUTRaffle`
