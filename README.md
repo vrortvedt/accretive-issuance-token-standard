@@ -70,16 +70,16 @@ The docs folder contains the following files:
 NOTE: because every completed raffle requires an owner and at least two entrants, you will need at least three Metamask accounts funded with Rinkeby test ether to fully interact with and test the contract
 
 ## **User Stories**
-* A raffle organizer deploys the contract, becomes its owner via the constructor and sends a transaction via
+1. A raffle organizer deploys the contract, becomes its owner via the constructor and sends a transaction via
 the openEvent function to open a new raffle.
-* Upon deployment, ERC20-compliant RaffleTokens (RFT) are instantiated with a totalSupply of 0
-* Participants enter the raffle by sending a transaction via the "enter" function
-* Once there are at least two entrants in the raffle, the owner can call "pickWinner" which pseudorandomly chooses a winner
+1. Upon deployment, ERC20-compliant RaffleTokens (RFT) are instantiated with a totalSupply of 0
+1. Participants enter the raffle by sending a transaction via the "enter" function
+1. Once there are at least two entrants in the raffle, the owner can call "pickWinner" which pseudorandomly chooses a winner
 of the raffle, closes the raffle to new entrants and clears the array of current entrants.
-* At the moment that a winner is picked, 1 RFT is minted for each entrant, so a minimum of 2 RFT tokens per raffle.
-* Also at that moment, the winner is transferred 7/8ths of the minted RFT, and the owner who deployed the contract is 
+1. At the moment that a winner is picked, 1 RFT is minted for each entrant, so a minimum of 2 RFT tokens per raffle.
+1. Also at that moment, the winner is transferred 7/8ths of the minted RFT, and the owner who deployed the contract is 
 transferred 1/8th of the minted RFT
-* Token balances are stored on the blockchain, and the owner may open a new raffle from the same deployed contract by repeating the first step.  
+1. Token balances are stored on the blockchain, and the owner may open a new raffle from the same deployed contract by repeating the first step.  
 
 ## **Library packages**
 This contract uses the following OpenZeppelin libraries:
