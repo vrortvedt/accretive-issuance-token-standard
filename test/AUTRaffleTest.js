@@ -22,7 +22,8 @@ contract('Accretive Utility Token - Raffle Contract', (accounts) => {
         let owneraddress = await raffle.owner();
         assert.ok(owneraddress);
     });
-
+    
+    // checks whether the expected owner is the actual owner 
     it('sets the expected address[0] as owner', async () => {
         assert.equal(await raffle.owner.call(), owner);
     });
