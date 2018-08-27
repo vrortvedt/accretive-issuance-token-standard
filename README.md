@@ -24,14 +24,21 @@ The project provides for the accretive minting and issuance of fungible utility 
 4. in the migrations folder, create a new file titled "2_deploy_contracts.js" and the js code from this repository
 4. in the test folder, create a new file titled "AUTRaffleTest.js" and copy the js code from this repository
 5. install the OpenZeppelin libraries via `npm install -E openzeppelin-solidity`
-6. run `ganache-cli`
+6. run `ganache-cli -p 7545`
 7. in a new terminal tab in the same directory, run `truffle compile`
-8. run `truffle migrate`
+8. run `truffle migrate` - copy the contract address
 9. run `truffle test`
 10. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
+##### INTERACTION OPTION A: Injected web3
+11. copy the seed words from ganache-cli into a new metamask account import
+12. switch metamask to the custom RPC addres `http://127.0.0.1:7545`
+13. from the "Run" tab in Remix, select Injected Web3 environment - it should then show the first account created by ganache-cli that should also be loaded in metamask (NOTE: to access accounts after the account at index [0], click create account in metamask - it should give you the next account created by ganache-cli)
+14. below that, paste the contract address copied from running `truffle migrate` into the form and click "At Address" - this should generate a new Deplyed Contract of "AUTRaffle[contract address](blockchain)"
+15. click the arrow to interact with the contract - to switch between metamask accounts, you may need to refresh the page and redirect to the deployed contract by repeating the step above
+##### INTERACTION OPTION B: Javascript VM Option
 11. using the javascript VM environment, Deploy a copy of AUTRaffle
 12. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions
-#### To interact with a deployed instance of the contract with Metamask account
+##### INTERACTION OPTION C: Deployed Rinkeby Instance Option
 1. obtain rinkeby testnet ether from a metamask address - you can get some [here](https://faucet.rinkeby.io "Title")
 2. at the [Remix](https://remix.ethereum.org "Title") browser, switch to the injected web3 environment
 3. under the "Run" tab, copy the following into the form and click the "At Address" blue button 
