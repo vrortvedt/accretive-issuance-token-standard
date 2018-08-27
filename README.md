@@ -13,6 +13,7 @@ The project provides for the accretive minting and issuance of fungible utility 
 * Truffle
 * Ganache-cli
 * web3
+* Metamask
 
 ### Steps:
 1. from the terminal, create a new directory for this project - eg `mkdir AUTRaffle`
@@ -28,7 +29,32 @@ The project provides for the accretive minting and issuance of fungible utility 
 10. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
 11. using the javascript VM environment, Deploy a copy of AUTRaffle
 12. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions
-
+#### To interact with a deployed instance of the contract with Metamask account
+1. obtain rinkeby testnet ether from a metamask address - you can get some [here](https://faucet.rinkeby.io "Title")
+2. at the [Remix](https://remix.ethereum.org "Title") browser, switch to the injected web3 environment
+3. under the "Run" tab, copy the following into the form and click the "At Address" blue button 
+`0xCF1F697736eC8F723Fb526e0c3AA4B654C1A6443` - this is an instance of the contract that has been deployed to the Rinkeby testnet
+4. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions - feel free to send me an email at victorrortvedt@gmail.com if you'd like me to open a raffle or pick a winner
+#### To deploy your own instance of the contract
+1. install the solc compiler `npm install -g solc`
+1. install truffle-hdwallet-provider `npm install truffle-hdwallet-provider`
+2. create local copies of the following OpenZeppelin libraries in your contracts folder:
+* [math/SafeMath.sol](https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/math/SafeMath.sol "Title") 
+* [ownership/Ownable.sol](https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/ownership/Ownable.sol "Title")  
+* [lifecycle/Pausable.sol](https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/lifecycle/Pausable.sol "Title")
+* [token/ERC20/ERC20.sol](https://github.com/OpenZeppelin/openzeppelin-solidity/blob/master/contracts/token/ERC20/ERC20.sol "Title")
+3. create a file in the root directory called "compile.js" and copy the js code from this repository
+4. create a file in the root directory called "truffle.js" and copy the js code from this repository
+4. create a file in the root directory called "deploy.js" and copy the js code from this repository
+5. obtain an [Infura API](https://infura.io "Title") key 
+6. create a ".env" file in the directory in which you should assign your Infura API key to INFURA_API_KEY and assign your 12 word seed from metamask to MNEMONIC
+7. add .env to your .gitignore file and make sure that you keep this file secret
+8. run `node compile.js`
+8. sign in to metamask from the account that you wish to deploy an instance of the contract from
+9. run `node deploy.js`
+10. copy the deployed contract address and interact with an instance where you are the owner in the [Remix](https://remix.ethereum.org "Title") browser using metamask in the injected web3 environment
+11. you may need to click the Metamask icon to open the signing window each time - you may also need to refresh the page if you wish to send transactions after switching between Metamask accounts
+NOTE: because every completed raffle requires an owner and at least two entrants, you will need at least three Metamask accounts funded with Rinkeby test ether to fully interact with and test the contract
 
 ## **Design Mechanisms**
 The mechanics for accretive token issuance built on the [ERC20 fungible token standard](https://theethereum.wiki/w/index.php/ERC20_Token_Standard "Title") and are straightforward:  
