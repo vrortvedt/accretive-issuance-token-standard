@@ -7,9 +7,9 @@ import "openzeppelin-solidity/contracts/lifecycle/Pausable.sol";
 
 // This contract relies on a tweaked version of the OpenZeppelin library 
 // "StandardToken.sol" by modifying the mapping "balances" and the 
-// global variable "totalSupply" have been set to public from private 
-// so that they can be viewed and called outside the contract.  
-
+// global variable "totalSupply" to public visibility from private 
+// so that they can be viewed and called outside the contract. 
+// The unique code begins at line 205
 
 contract StandardTokenTweaked is ERC20 {
   using SafeMath for uint256;
@@ -204,14 +204,19 @@ contract StandardTokenTweaked is ERC20 {
 
 /**
  * @title Accretive Utility Token Raffle Contract
- *
+ * @author Victor Rortvedt victorrortvedt@gmail.com 
  * @dev Implementation of the accretive utility token issuance model with a simple raffle
  */
+ 
 contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
     event Award(address indexed toWinner, address indexed toDevs, uint256 amount);
     event OpenEvent(address indexed ownerAddress);
     event Entered(address indexed entrantAddress);
 
+ /** 
+  * @dev struct for competitions - here implemented as raffles 
+  */
+  
     struct Event {
         uint eventCount;
         address[] participants;
@@ -229,6 +234,11 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
     
     Event public events;
 
+  /**
+   * @dev deployed instance of contract sets the owner, instantiates the token with a 0 balance, and provides the initial
+   * @dev raffle status is set to closed
+   */
+    
     constructor() public {
         totalSupply_ = INITIAL_SUPPLY;
         balances[owner] = INITIAL_SUPPLY;
@@ -237,6 +247,14 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
         events.eventCount = 0;
     }
 
+    /**
+     *@dev function that runs when a raffle winner is picked - it inclements the token supply, transfers 7/8th of
+     * @dev the newly minted tokens to the raffle winner and 1/8th to the contract owner, and emits the relevant Events
+     * @param _toWinner the address of the raffle winner
+     * @param _amount the amount of minted tokens that will be divided by the winner and the contract owner
+     * @returns bool as to whether it has been executed
+     */
+    
     function award(address _toWinner, uint256 _amount) private onlyOwner whenNotPaused returns (bool) {
         totalSupply_ = totalSupply_.add(_amount);
         uint256 winnerShare = (_amount / 8) * 7;
@@ -251,12 +269,21 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
         return true;
     }
 
+    /**
+     * @dev function that can be called by the owner, opening a new raffle and emitting the relevant Event
+     */
+    
     function openEvent() public onlyOwner whenNotPaused {
         require(!events.open);
         events.open = true;
         events.eventCount = events.eventCount + 1;
         emit OpenEvent(msg.sender);
     }
+    
+    /**
+     * @dev function that allows participants to enter open raffles, adding them to the array of participants
+     * @dev limiting them to a single entry per address with the canEnter function below
+     */
     
     function enter() external payable whenNotPaused {
         require(events.open);
@@ -266,6 +293,12 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
         emit Entered(msg.sender);
     }
 
+    /**
+     * @dev function that allows the owner to end an open raffle with at least 2 entrants by psuedorandomly choosing a winner, 
+     * @dev closing the raffle, minting one new token per raffle entrant, calling the awrd function and clearing the 
+     * @dev array of raffle entrants
+     */
+    
     function pickWinner() public onlyOwner whenNotPaused {
         require(events.participants.length > 1);
         require(events.open);
@@ -277,18 +310,39 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
         delete events.participants;
     }
     
+    /**
+     * @dev view function that uses a hash of three pseudo-random elements to pseudorandomly return a number used in pickWinner
+     * @returns a uint that is used by pickWinner
+     */
+    
     function pseudoRandom() private view returns (uint) {
         return uint(keccak256(block.difficulty, now, events.participants[0]));
     }
-
+    
+    /**
+     * @dev view function that returns the array of raffle entrants 
+     * @returns the array of raffle entrants
+     */
+    
     function getParticipants() public view returns (address[]) {
         return events.participants;
     }
     
+    /**
+     * @dev view function that returns whether the raffle is open or closed
+     * @returns the bool status of whether the raffle is open or not
+     */
+    
     function eventStatus() public view returns (bool) {
         return events.open;
     }
-
+    
+    /**
+     * @dev view function that checks whether an address is already in the array of entrants 
+     * @dev used in enter function to prevent double entries
+     * @returns a bool as to whether an address may enter a raffle 
+     */
+    
     function canEnter() public view returns (bool) {
         for(uint i = 0; i < events.participants.length; i++) {
             require(events.participants[i] != msg.sender);
