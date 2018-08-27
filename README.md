@@ -1,7 +1,4 @@
-# accretive-issuance-token-standard
-Ethereum utility token issuance model where supply is incremented as the token is used
-
-# **Accretive Utility Token Issuance Model**
+# **Accretive Utility Token Issuance Model with Raffle Implementation**
 
 ## **Overview**
 The project provides for the accretive minting and issuance of fungible utility tokens utilized by a dApp according to the dApp’s award system.  Instead of tokens being pre-mined (minting all token supply at the moment the token is created) or issued on a time-based automated schedule regardless of token demand or use (as in PoW or PoS block rewards), an accretive utility token issuance model accurately reflects the dApp’s utility while providing users a method to acquire tokens without regard to their economic power.  It also proposes a compensation framework (see The Developer’s Bit section) that is intended to equitably and transparently reward developers in direct proportion to the utility of their dApp.
