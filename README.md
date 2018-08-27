@@ -14,6 +14,7 @@ The project provides for the accretive minting and issuance of fungible utility 
 * Ganache-cli
 * web3
 * Metamask
+* dotenv
 
 ### Steps:
 1. from the terminal, create a new directory for this project - eg `mkdir AUTRaffle`
