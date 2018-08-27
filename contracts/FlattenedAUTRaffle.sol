@@ -2,7 +2,7 @@ pragma solidity ^0.4.24;
 
 // This contract flattens OpenZeppelin's SafeMath.sol, ERC20.sol, Ownable.Sol
 // and Pausable.sol.  It aslo relies on a tweaked version of  
-// "StandardToken.sol" that modifys the mapping "balances" and the 
+// "StandardToken.sol" that modifies the mapping "balances" and the 
 // global variable "totalSupply" to public from private 
 // so that they can be viewed and called outside the contract.
 // The unique code begins at line 405.
