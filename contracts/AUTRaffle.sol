@@ -252,7 +252,7 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
      * @dev the newly minted tokens to the raffle winner and 1/8th to the contract owner, and emits the relevant Events
      * @param _toWinner the address of the raffle winner
      * @param _amount the amount of minted tokens that will be divided by the winner and the contract owner
-     * @returns bool as to whether it has been executed
+     * @return bool as to whether it has been executed
      */
     
     function award(address _toWinner, uint256 _amount) private onlyOwner whenNotPaused returns (bool) {
@@ -312,7 +312,7 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
     
     /**
      * @dev view function that uses a hash of three pseudo-random elements to pseudorandomly return a number used in pickWinner
-     * @returns a uint that is used by pickWinner
+     * @return a uint that is used by pickWinner
      */
     
     function pseudoRandom() private view returns (uint) {
@@ -321,7 +321,7 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
     
     /**
      * @dev view function that returns the array of raffle entrants 
-     * @returns the array of raffle entrants
+     * @return the array of raffle entrants
      */
     
     function getParticipants() public view returns (address[]) {
@@ -330,7 +330,7 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
     
     /**
      * @dev view function that returns whether the raffle is open or closed
-     * @returns the bool status of whether the raffle is open or not
+     * @return the bool status of whether the raffle is open or not
      */
     
     function eventStatus() public view returns (bool) {
@@ -340,7 +340,7 @@ contract AUTRaffle is StandardTokenTweaked, Ownable, Pausable {
     /**
      * @dev view function that checks whether an address is already in the array of entrants 
      * @dev used in enter function to prevent double entries
-     * @returns a bool as to whether an address may enter a raffle 
+     * @return a bool as to whether an address may enter a raffle 
      */
     
     function canEnter() public view returns (bool) {
