@@ -2,6 +2,7 @@
 
 ## **Overview**
 The project provides for the accretive minting and issuance of fungible utility tokens utilized by a dApp according to the dApp’s award system.  Instead of tokens being pre-mined (minting all token supply at the moment the token is created) or issued on a time-based automated schedule regardless of token demand or use (as in PoW or PoS block rewards), an accretive utility token issuance model accurately reflects the dApp’s utility while providing users a method to acquire utility tokens based on their skill without regard to their economic power.  It also proposes and implements a compensation framework that is intended to equitably and transparently reward developers in direct proportion to the utility of their dApp by transferring them 1/8th of the newly minted tokens, with the remainder going to the winner of the award event.
+As a vehicle for the accretive utility token (AUT) issuance model, I have built a simple raffle contract to demonstrate how award events can be created and managaed by the developer/contract deployer, with the number of raffle participants equal to the number of tokens minted for that raffle.  The raffle winner gets 7/8ths of the new tokens while the developer gets 1/8th.
 
 ## Supporting Documentation
 The docs folder contains the following files:
