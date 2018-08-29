@@ -50,7 +50,7 @@ The docs folder contains the following files:
 14. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions - feel free to send me an email at victorrortvedt@gmail.com if you'd like me to open a raffle or pick a winner
 #### React App
 ##### Setup
-1. in the terminal, from a root project directory `create-react-app "autraffle-react-app"`
+1. in the terminal, from a root project directory `npx create-react-app "autraffle-react-app"`
 1. `cd autraffle-react-app`
 1. install web3 by running `npm install web3`
 1. copy “App.js” code from this repository into the existing "App.js" in the /src folder
