@@ -18,7 +18,6 @@ The docs folder contains the following files:
 * Ganache-cli
 * web3
 * Metamask
-* dotenv
 * truffle-hdwallet-provider
 
 ### Steps:
@@ -33,22 +32,7 @@ The docs folder contains the following files:
 7. in a new terminal tab in the same directory, run `truffle compile`
 8. run `truffle migrate` - copy the contract address
 9. run `truffle test`
-10. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
-##### INTERACTION OPTION A: Injected web3
-11. copy the seed words from ganache-cli into a new metamask account import
-12. switch metamask to the custom RPC addres `http://127.0.0.1:7545`
-13. from the "Run" tab in Remix, select Injected Web3 environment - it should then show the first account created by ganache-cli that should also be loaded in metamask (NOTE: to access accounts after the account at index [0], click create account in metamask - it should give you the next account created by ganache-cli)
-14. below that, paste the contract address copied from running `truffle migrate` into the form and click "At Address" - this should generate a new Deplyed Contract of "AUTRaffle[contract address](blockchain)"
-15. click the arrow to interact with the contract - to switch between metamask accounts, you may need to refresh the page and redirect to the deployed contract by repeating the step above
-##### INTERACTION OPTION B: Javascript VM Option
-11. using the javascript VM environment, Deploy a copy of AUTRaffle
-12. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions
-##### INTERACTION OPTION C: Deployed Rinkeby Instance Option
-11. obtain rinkeby testnet ether from a metamask address - you can get some [here](https://faucet.rinkeby.io "Title")
-12. at the [Remix](https://remix.ethereum.org "Title") browser, switch to the injected web3 environment
-13. under the "Run" tab, copy the following into the form and click the "At Address" blue button 
-`0xCF1F697736eC8F723Fb526e0c3AA4B654C1A6443` - this is an instance of the contract that has been deployed to the Rinkeby testnet
-14. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions - feel free to send me an email at victorrortvedt@gmail.com if you'd like me to open a raffle or pick a winner
+
 #### React App
 ##### Setup
 1. in the terminal, from a root project directory `npx create-react-app "autraffle-react-app"`
@@ -66,6 +50,24 @@ The docs folder contains the following files:
 1. in the terminal, from the autraffle-react-app directory launch the dev server dApp via `npm run start`
 11. each time you click a button to interact with the dApp, you may need to click the Metamask icon to open the signing window - you may also need to refresh the page if you wish to send transactions after switching between Metamask accounts
 NOTE: because every completed raffle requires an owner and at least two entrants, you will need to access at least three Metamask accounts to fully interact with and test the dApp - you can access additional ganache-created test accounts in metamask by clicking the circular identicon in the top right and clicking "Create Account"
+
+####Remix
+1. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
+##### INTERACTION OPTION A: Injected web3
+2. copy the seed words from ganache-cli into a new metamask account import
+3. switch metamask to the custom RPC addres `http://127.0.0.1:7545`
+4. from the "Run" tab in Remix, select Injected Web3 environment - it should then show the first account created by ganache-cli that should also be loaded in metamask (NOTE: to access accounts after the account at index [0], click create account in metamask - it should give you the next account created by ganache-cli)
+5. below that, paste the contract address copied from running `truffle migrate` into the form and click "At Address" - this should generate a new Deployed Contract of "AUTRaffle"
+6. click the arrow to interact with the contract - to switch between metamask accounts, you may need to refresh the page and redirect to the deployed contract by repeating the step above
+##### INTERACTION OPTION B: Javascript VM Option
+2. using the javascript VM environment, Deploy a copy of AUTRaffle
+3. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions
+##### INTERACTION OPTION C: Deployed Rinkeby Instance Option
+2. obtain rinkeby testnet ether from a metamask address - you can get some [here](https://faucet.rinkeby.io "Title")
+3. at the [Remix](https://remix.ethereum.org "Title") browser, switch to the injected web3 environment
+4. under the "Run" tab, copy the following into the form and click the "At Address" blue button 
+`0xCF1F697736eC8F723Fb526e0c3AA4B654C1A6443` - this is an instance of the contract that has been deployed to the Rinkeby testnet
+5. open the instance that appears in "Deployed Contracts" below and interact with the contract to test its functions - feel free to send me an email at victorrortvedt@gmail.com if you'd like me to open a raffle or pick a winner
 
 ## **User Stories**
 1. A raffle organizer deploys the contract, becomes its owner via the constructor and sends a transaction via
