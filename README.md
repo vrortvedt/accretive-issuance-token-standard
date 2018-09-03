@@ -54,7 +54,7 @@ NOTE: because every completed raffle requires an owner and at least two entrants
 1. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
 ##### INTERACTION OPTION A: Injected web3
 2. copy the seed words from ganache-cli into a new metamask account import
-3. switch metamask to the Localhost 8545
+3. switch metamask networks to Localhost 8545
 4. from the "Run" tab in Remix, select Injected Web3 environment - it should then show the first account created by ganache-cli that should also be loaded in metamask (NOTE: to access accounts after the account at index [0], click create account in metamask - it should give you the next account created by ganache-cli)
 5. below that, paste the contract address copied from running `truffle migrate` into the form and click "At Address" - this should generate a new Deployed Contract of "AUTRaffle"
 6. click the arrow to interact with the contract - to switch between metamask accounts, you may need to refresh the page and redirect to the deployed contract by repeating the step above
