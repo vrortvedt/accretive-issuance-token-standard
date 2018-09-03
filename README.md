@@ -51,7 +51,7 @@ The docs folder contains the following files:
 11. each time you click a button to interact with the dApp, you may need to click the Metamask icon to open the signing window - you may also need to refresh the page if you wish to send transactions after switching between Metamask accounts
 NOTE: because every completed raffle requires an owner and at least two entrants, you will need to access at least three Metamask accounts to fully interact with and test the dApp - you can access additional ganache-created test accounts in metamask by clicking the circular identicon in the top right and clicking "Create Account"
 
-####Remix
+#### Remix
 1. at the [Remix](https://remix.ethereum.org "Title") browser, copy the code from "FlattenedAUTRaffle.sol" into a new window
 ##### INTERACTION OPTION A: Injected web3
 2. copy the seed words from ganache-cli into a new metamask account import
