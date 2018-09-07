@@ -11,9 +11,9 @@ The docs folder contains the following files:
 * [deployed_addresses.txt](https://github.com/vrortvedt/accretive-utility-token-issuance-standard-with-raffle-contract/blob/master/docs/deployed_addresses.txt "Title")
 
 ## **How To Set Up**
-### Prerequisites:
+### Dependencies:
 * Node
-* NPM
+* NPM (version 5.2 or above - if you are using an earlier version you need to install NPX as well)
 * Truffle
 * Ganache-cli
 * web3
